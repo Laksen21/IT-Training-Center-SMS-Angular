@@ -1,0 +1,84 @@
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+			<h4 class="card-title">Course Modules</h4>
+			<form>
+				<div class="row mt-3">
+					<div class="mb-3 col-2">
+						<label class="form-label">Module Id</label>
+						<input type="number" class="form-control" [(ngModel)]="ModuleId" [ngModelOptions]="{standalone: true}" id="ModuleId" disabled readonly>
+					</div>
+					<div class="mb-3 col-2">
+						<label class="form-label">Module code</label>
+						<input type="text" class="form-control" [(ngModel)]="ModuleCode" [ngModelOptions]="{standalone: true}" id="ModuleCode" placeholder="Ex: XXX0000" required>
+					</div>
+					<div class="mb-3 col-8">
+						<label class="form-label">Module name</label>
+						<input type="text" class="form-control" [(ngModel)]="ModuleName" [ngModelOptions]="{standalone: true}" id="ModuleName" placeholder="Ex: XXXX000" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="mb-3 col-2">
+						<label class="form-label">Active (Yes/No)</label>
+						<input type="text" class="form-control" [(ngModel)]="Active" [ngModelOptions]="{standalone: true}" id="Active" required>
+					</div>
+					<div class="mb-3 col-2">
+						<label class="form-label">User</label>
+						<input type="text" class="form-control" [(ngModel)]="User" [ngModelOptions]="{standalone: true}" id="User" required>
+					</div>
+					<div class="mb-3 col-2">
+						<label class="form-label">Date</label>
+						<input type="text" class="form-control" [(ngModel)]="DateEntered" [ngModelOptions]="{standalone: true}" id="date" disabled>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary me-2" (click)="submit()">Submit</button>
+				<button type="submit" class="btn btn-danger" (click)="resetForm()">Reset</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-3">
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search Id" aria-label="Search" [(ngModel)]="searchModuleId" [ngModelOptions]="{standalone: true}">
+						<button class="btn btn-outline-success" type="submit" (click)="getModuleById()">Search</button>
+					</form>
+				</div>
+				<div class="col-3 ms-5 mt-1">
+					<p><a class="link-offset-2" style="cursor: pointer;" (click)="getAllModules()">All module details</a></p>
+				</div>
+			</div>
+			<div class="row">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Module Id</th>
+							<th scope="col">Module code</th>
+							<th scope="col">Module Name</th>
+							<th scope="col">Active</th>
+							<th scope="col">Entered date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let moduleData of moduleDetails">
+							<td>{{moduleData.ModuleId}}</td>
+							<td>{{moduleData.ModuleCode}}</td>
+							<td>{{moduleData.ModuleName}}</td>
+							<td>{{moduleData.Active}}</td>
+							<td>{{moduleData.DateEntered}}</td>
+							<td>
+								<button class="btn btn btn-info me-2" type="submit" (click)="viewModules(moduleData)">View</button>
+								<button class="btn btn btn-danger me-2" type="submit"
+									(click)="deleteModule(moduleData)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,83 @@
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+			<h4 class="card-title">Exam result</h4>
+			<form>
+				<div class="row mt-3">
+					<div class="mb-3 col-2">
+						<label class="form-label">Student Id</label>
+						<input type="number" class="form-control" [(ngModel)]="StudentId" [ngModelOptions]="{standalone: true}" id="StudentId" >
+					</div>
+					<div class="mb-3 col-2">
+						<label class="form-label">Course year</label>
+						<input type="text" class="form-control" [(ngModel)]="CourseYear" [ngModelOptions]="{standalone: true}" id="CourseYear" required>
+					</div>
+					<div class="mb-3 col-2">
+						<label class="form-label">Module code</label>
+						<select class="form-select" [(ngModel)]="ModuleCode" [ngModelOptions]="{standalone: true}" required>
+							<option selected disabled>Select module code</option>
+              				<option *ngFor="let ModuleCode of moduleCodeList" [value]="ModuleCode.ModuleCode">{{ ModuleCode.ModuleCode }}</option>
+            			</select>
+					</div>
+                    <div class="mb-3 col-2">
+						<label class="form-label">Marks</label>
+						<input type="text" class="form-control" [(ngModel)]="Marks" [ngModelOptions]="{standalone: true}" id="Active" required>
+					</div>
+					<div class="mb-3 col-2">
+						<label class="form-label">User</label>
+						<input type="text" class="form-control" [(ngModel)]="User" [ngModelOptions]="{standalone: true}" id="User" required>
+					</div>
+					<div class="mb-3 col-2">
+						<label class="form-label">Date</label>
+						<input type="date" class="form-control" [(ngModel)]="DateEntered" [ngModelOptions]="{standalone: true}" id="date" >
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary me-2" (click)="submit()">Submit</button>
+				<button type="submit" class="btn btn-danger" (click)="resetForm()">Reset</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+			<div class="row justify-content-between">
+				<div class="col-3">
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search Id" aria-label="Search" [(ngModel)]="searchStudentId" [ngModelOptions]="{standalone: true}">
+						<button class="btn btn-outline-success" type="submit" (click)="getResultById()">Search</button>
+					</form>
+				</div>
+                <!-- <div class="col">
+                    <button class="btn btn-warning" type="submit" (click)="downloadXlsx()">Download result sheet</button>
+                </div> -->
+			</div>
+			<div class="row">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Student Id</th>
+							<th scope="col">Course year</th>
+							<th scope="col">Module code</th>
+							<th scope="col">Marks</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let examData of examDetails">
+							<td>{{examData.StudentId}}</td>
+							<td>{{examData.CourseYear}}</td>
+							<td>{{examData.ModuleCode}}</td>
+							<td>{{examData.Marks}}</td>
+							<td>
+								<button class="btn btn btn-info me-2" type="submit" (click)="viewResult(examData)">View</button>
+								<button class="btn btn btn-danger me-2" type="submit" (click)="deleteResult(examData)">Delete</button>
+								<button class="btn btn-warning" type="submit" (click)="downloadXlsx()">Download result sheet</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

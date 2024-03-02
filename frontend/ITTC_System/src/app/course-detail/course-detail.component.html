@@ -1,0 +1,109 @@
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+			<h4 class="card-title">Course Details</h4>
+			<form>
+				<div class="row mt-3">
+					<div class="mb-3 col-3">
+						<label class="form-label">Course Id</label>
+						<input type="text" class="form-control" [(ngModel)]="CD_ID" [ngModelOptions]="{standalone: true}" id="CD_ID" disabled>
+					</div>
+                    <div class="mb-3 col-6">
+						<label class="form-label">Course name</label>
+						<input type="text" class="form-control" [(ngModel)]="CourseName" [ngModelOptions]="{standalone: true}" id="CourseName" required>
+					</div>
+                    <div class="mb-3 col-3">
+						<label class="form-label">Course type</label>
+						<input type="text" class="form-control" [(ngModel)]="CourseType" [ngModelOptions]="{standalone: true}" id="CourseType" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="mb-3 col-3">
+						<label class="form-label">Duration</label>
+						<input type="text" class="form-control" [(ngModel)]="Duration" [ngModelOptions]="{standalone: true}" id="Duration" required>
+					</div>
+					<div class="mb-3 col-3">
+						<label class="form-label">Medium</label>
+						<input type="text" class="form-control" [(ngModel)]="Medium" [ngModelOptions]="{standalone: true}" id="Medium" required>
+					</div>
+					<div class="mb-3 col-3">
+						<label class="form-label">Course level</label>
+						<input type="text" class="form-control" [(ngModel)]="CourseLevel" [ngModelOptions]="{standalone: true}" id="CourseLevel" required>
+					</div>
+                    <div class="mb-3 col-3">
+						<label class="form-label">Module code</label>
+						<select class="form-select" [(ngModel)]="ModuleCode" [ngModelOptions]="{standalone: true}" required>
+							<option selected>Select module code</option>
+              				<option *ngFor="let ModuleCode of moduleCodeList" [value]="ModuleCode.ModuleCode">{{ ModuleCode.ModuleCode }}</option>
+            			</select>
+					</div>
+				</div>
+                <div class="row">
+					<div class="mb-3 col-3">
+						<label class="form-label">Active</label>
+						<input type="text" class="form-control" [(ngModel)]="Active" [ngModelOptions]="{standalone: true}" id="Active" required>
+					</div>
+					<div class="mb-3 col-3">
+						<label class="form-label">User</label>
+						<input type="text" class="form-control" [(ngModel)]="User" [ngModelOptions]="{standalone: true}" id="User" required>
+					</div>
+					<div class="mb-3 col-3">
+						<label class="form-label">Date</label>
+						<input type="date" class="form-control" [(ngModel)]="DateEntered" [ngModelOptions]="{standalone: true}" id="date" required>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary me-2" (click)="submit()">Submit</button>
+				<button type="submit" class="btn btn-danger" (click)="resetForm()">Reset</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-3">
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search Id" aria-label="Search" [(ngModel)]="searchCourseId" [ngModelOptions]="{standalone: true}">
+						<button class="btn btn-outline-success" type="submit" (click)="getCourseById()">Search</button>
+					</form>
+				</div>
+				<div class="col-3 ms-5 mt-1">
+					<p><a class="link-offset-2" style="cursor: pointer;" (click)="getAllCourses()">All course details</a></p>
+				</div>
+			</div>
+			<div class="row">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Course Id</th>
+							<th scope="col">Course name</th>
+							<th scope="col">Course Type</th>
+							<th scope="col">Duration</th>
+							<th scope="col">Medium</th>
+                            <th scope="col">Course Level</th>
+                            <th scope="col">Module code</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let courseData of courseDetails">
+							<td>{{courseData.CD_ID}}</td>
+							<td>{{courseData.CourseName}}</td>
+							<td>{{courseData.CourseType}}</td>
+							<td>{{courseData.Duration}}</td>
+							<td>{{courseData.Medium}}</td>
+                            <td>{{courseData.CourseLevel}}</td>
+                            <td>{{courseData.ModuleCode}}</td>
+							<td>
+								<button class="btn btn btn-info me-2" type="submit" (click)="viewCourse(courseData)">View</button>
+								<button class="btn btn btn-danger me-2" type="submit"
+									(click)="deleteCourse(courseData)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

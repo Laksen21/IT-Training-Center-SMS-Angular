@@ -1,0 +1,141 @@
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+      <h4 class="card-title">Student Registration</h4>
+			<form>
+				<div class="row mt-3">
+					<div class="mb-3 me-1 col-3">
+						<label class="form-label">Student Id</label>
+						<input type="text" class="form-control" [(ngModel)]="studentId" [ngModelOptions]="{standalone: true}" id="studentId" disabled readonly>
+					</div>
+					<div class="mb-3 me-1 col-3">
+						<label class="form-label">Course Year</label>
+						<input type="number" class="form-control" [(ngModel)]="courseYear" [ngModelOptions]="{standalone: true}" id="courseYear" required>
+					</div>
+					<div class="mb-3 col-3">
+						<label class="form-label">Course Id</label>
+						<select class="form-select" [(ngModel)]="courseId" [ngModelOptions]="{standalone: true}" required>
+							<option selected disabled>Select Course Id</option>
+              				<option *ngFor="let courseId of courseIdList" [value]="courseId.CD_ID">{{ courseId.CD_ID }}</option>
+            			</select>
+					</div>
+					
+				</div>
+        <div class="mb-3 col-9">
+          <label class="form-label">Full name</label>
+          <input type="text" class="form-control" [(ngModel)]="fullName" [ngModelOptions]="{standalone: true}" id="fullName" required>
+        </div>
+        <div class="mb-3 col-9">
+          <label class="form-label">Name with initials</label>
+          <input type="text" class="form-control" [(ngModel)]="nameWithInitials" [ngModelOptions]="{standalone: true}" id="nameWithInitials" required="">
+        </div>
+        <div class="row">
+          <div class="mb-3 me-1 col-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" [(ngModel)]="selectedGender" [ngModelOptions]="{standalone: true}" required>
+              	<option *ngFor="let gender of genderList" [value]="gender">{{ gender }}</option>
+            </select>
+          </div>
+					<div class="mb-3 me-1 col-3">
+						<label class="form-label">NIC</label>
+						<input type="text" class="form-control" [(ngModel)]="nic" [ngModelOptions]="{standalone: true}" id="nic" required>
+					</div>
+					<div class="mb-3 me-1 col-3">
+						<label class="form-label">MIS number</label>
+						<input type="text" class="form-control" [(ngModel)]="misNumber" [ngModelOptions]="{standalone: true}" id="misNumber" required>
+					</div>
+					<div class="mb-3 me-1 col-3">
+						<label class="form-label">Mobile no</label>
+						<input type="number" class="form-control" [(ngModel)]="mobileNo" [ngModelOptions]="{standalone: true}" id="mobileNo" required>
+					</div>
+          <div class="mb-3 col-6">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" id="address" required>
+          </div>
+				</div>
+        <div class="row mt-2">
+				  <div class="mb-3 ms-3 form-check col-sm-2">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="changed" [ngModelOptions]="{standalone: true}" id="changed">
+				  	<label class="form-check-label me-5" >Changed</label>
+				  </div>
+          <div class="form-check col-2">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="deleted" [ngModelOptions]="{standalone: true}" id="deleted">
+				  	<label class="form-check-label">Deleted</label>
+				  </div>
+          <div class="form-check col-2">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="dropOut" [ngModelOptions]="{standalone: true}" id="dropOut">
+				  	<label class="form-check-label">Drop out</label>
+				  </div>
+          <div class="form-check col-2">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="finalExamSitted" [ngModelOptions]="{standalone: true}" id="finalExamSitted">
+				  	<label class="form-check-label">Final exam sitted</label>
+				  </div>
+        </div>
+        <div class="row mt-2">
+          <div class="form-check mb-3 ms-3 col-2">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="repeatStudent" [ngModelOptions]="{standalone: true}" id="repeatStudent">
+				  	<label class="form-check-label">Repeat student</label>
+				  </div>
+        </div>
+        <div class="row">
+					<div class="mb-3 me-1 col-3">
+						<label class="form-label">User</label>
+						<input type="number" class="form-control" [(ngModel)]="user" [ngModelOptions]="{standalone: true}" id="user" required>
+					</div>
+					<div class="mb-3 me-1 col-3">
+						<label class="form-label">Date</label>
+						<input type="date" class="form-control" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" id="date" required>
+					</div>
+        </div>  
+		    <button type="submit" class="btn btn-primary me-2" (click)="submit()">Submit</button>
+        <button type="submit" class="btn btn-danger" (click)="resetForm()">Reset</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="container" data-bs-theme="dark">
+	<div class="card mt-2">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-3">
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search Id" aria-label="Search" [(ngModel)]="searchStudentId" [ngModelOptions]="{standalone: true}">
+						<button class="btn btn-outline-success" type="submit" (click)="getStudentById()">Search</button>
+					</form>
+				</div>
+				<div class="col-3 ms-5 mt-1">
+					<p><a class="link-offset-2" style="cursor: pointer;" (click)="getAllStudents()">All student details</a></p>
+				</div>
+			</div>
+			<div class="row">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Student Id</th>
+							<th scope="col">Name with initials</th>
+							<th scope="col">Course year</th>
+							<th scope="col">Course Id</th>
+							<th scope="col">NIC</th>
+							<th scope="col">MIS number</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let studentData of studentDetails">
+							<td>{{studentData.Id}}</td>
+							<td>{{studentData.NameWithInitials}}</td>
+							<td>{{studentData.CourseYear}}</td>
+							<td>{{studentData.CourseId}}</td>
+							<td>{{studentData.Nic}}</td>
+							<td>{{studentData.MISNumber}}</td>
+							<td>
+								<button class="btn btn btn-info me-2" type="submit" (click)="viewStudent(studentData)">View</button>
+								<button class="btn btn btn-danger me-2" type="submit" (click)="deleteStudent(studentData)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>	
