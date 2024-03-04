@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-student-registration',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentRegistrationComponent implements OnInit{
   
-  constructor(private http: HttpClient){
+  Form :FormGroup;
+  constructor(private http: HttpClient, private fb: FormBuilder){
 
   }
     
@@ -43,7 +45,8 @@ export class StudentRegistrationComponent implements OnInit{
   searchStudentId: any;
   currentStudentId: string = "";
 
-  submit() {
+  submit(Form :NgForm) {
+    console.log(Form);
     if (this.currentStudentId == ""){
       this.studentRegister();
     } else {

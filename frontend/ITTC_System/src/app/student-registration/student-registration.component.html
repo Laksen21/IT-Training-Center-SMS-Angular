@@ -2,19 +2,19 @@
 	<div class="card mt-2">
 		<div class="card-body">
       <h4 class="card-title">Student Registration</h4>
-			<form>
+			<form (ngSubmit)="submit(Form)" #Form = "ngForm">
 				<div class="row mt-3">
 					<div class="mb-3 me-1 col-3">
 						<label class="form-label">Student Id</label>
-						<input type="text" class="form-control" [(ngModel)]="studentId" [ngModelOptions]="{standalone: true}" id="studentId" disabled readonly>
+						<input type="text" class="form-control" [(ngModel)]="studentId"  name="studentId"  disabled >
 					</div>
 					<div class="mb-3 me-1 col-3">
 						<label class="form-label">Course Year</label>
-						<input type="number" class="form-control" [(ngModel)]="courseYear" [ngModelOptions]="{standalone: true}" id="courseYear" required>
+						<input type="number" class="form-control" [(ngModel)]="courseYear"  name="courseYear" required>
 					</div>
 					<div class="mb-3 col-3">
 						<label class="form-label">Course Id</label>
-						<select class="form-select" [(ngModel)]="courseId" [ngModelOptions]="{standalone: true}" required>
+						<select class="form-select" [(ngModel)]="courseId" required>
 							<option selected disabled>Select Course Id</option>
               				<option *ngFor="let courseId of courseIdList" [value]="courseId.CD_ID">{{ courseId.CD_ID }}</option>
             			</select>
@@ -23,11 +23,11 @@
 				</div>
         <div class="mb-3 col-9">
           <label class="form-label">Full name</label>
-          <input type="text" class="form-control" [(ngModel)]="fullName" [ngModelOptions]="{standalone: true}" id="fullName" required>
+          <input type="text" class="form-control" [(ngModel)]="fullName" [ngModelOptions]="{standalone: true}" name="fullName" required>
         </div>
         <div class="mb-3 col-9">
           <label class="form-label">Name with initials</label>
-          <input type="text" class="form-control" [(ngModel)]="nameWithInitials" [ngModelOptions]="{standalone: true}" id="nameWithInitials" required="">
+          <input type="text" class="form-control" [(ngModel)]="nameWithInitials" [ngModelOptions]="{standalone: true}" name="nameWithInitials" required>
         </div>
         <div class="row">
           <div class="mb-3 me-1 col-3">
@@ -38,57 +38,57 @@
           </div>
 					<div class="mb-3 me-1 col-3">
 						<label class="form-label">NIC</label>
-						<input type="text" class="form-control" [(ngModel)]="nic" [ngModelOptions]="{standalone: true}" id="nic" required>
+						<input type="text" class="form-control" [(ngModel)]="nic" [ngModelOptions]="{standalone: true}" name="nic" required>
 					</div>
 					<div class="mb-3 me-1 col-3">
 						<label class="form-label">MIS number</label>
-						<input type="text" class="form-control" [(ngModel)]="misNumber" [ngModelOptions]="{standalone: true}" id="misNumber" required>
+						<input type="text" class="form-control" [(ngModel)]="misNumber" [ngModelOptions]="{standalone: true}" name="misNumber" required>
 					</div>
 					<div class="mb-3 me-1 col-3">
 						<label class="form-label">Mobile no</label>
-						<input type="number" class="form-control" [(ngModel)]="mobileNo" [ngModelOptions]="{standalone: true}" id="mobileNo" required>
+						<input type="number" class="form-control" [(ngModel)]="mobileNo" [ngModelOptions]="{standalone: true}" name="mobileNo" required>
 					</div>
           <div class="mb-3 col-6">
             <label class="form-label">Address</label>
-            <input type="text" class="form-control" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" id="address" required>
+            <input type="text" class="form-control" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" name="address" required>
           </div>
 				</div>
         <div class="row mt-2">
 				  <div class="mb-3 ms-3 form-check col-sm-2">
-				  	<input type="checkbox" class="form-check-input" [(ngModel)]="changed" [ngModelOptions]="{standalone: true}" id="changed">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="changed" [ngModelOptions]="{standalone: true}" name="changed">
 				  	<label class="form-check-label me-5" >Changed</label>
 				  </div>
           <div class="form-check col-2">
-				  	<input type="checkbox" class="form-check-input" [(ngModel)]="deleted" [ngModelOptions]="{standalone: true}" id="deleted">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="deleted" [ngModelOptions]="{standalone: true}" name="deleted">
 				  	<label class="form-check-label">Deleted</label>
 				  </div>
           <div class="form-check col-2">
-				  	<input type="checkbox" class="form-check-input" [(ngModel)]="dropOut" [ngModelOptions]="{standalone: true}" id="dropOut">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="dropOut" [ngModelOptions]="{standalone: true}" name="dropOut">
 				  	<label class="form-check-label">Drop out</label>
 				  </div>
           <div class="form-check col-2">
-				  	<input type="checkbox" class="form-check-input" [(ngModel)]="finalExamSitted" [ngModelOptions]="{standalone: true}" id="finalExamSitted">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="finalExamSitted" [ngModelOptions]="{standalone: true}" name="finalExamSitted">
 				  	<label class="form-check-label">Final exam sitted</label>
 				  </div>
         </div>
         <div class="row mt-2">
           <div class="form-check mb-3 ms-3 col-2">
-				  	<input type="checkbox" class="form-check-input" [(ngModel)]="repeatStudent" [ngModelOptions]="{standalone: true}" id="repeatStudent">
+				  	<input type="checkbox" class="form-check-input" [(ngModel)]="repeatStudent" [ngModelOptions]="{standalone: true}" name="repeatStudent">
 				  	<label class="form-check-label">Repeat student</label>
 				  </div>
         </div>
         <div class="row">
 					<div class="mb-3 me-1 col-3">
 						<label class="form-label">User</label>
-						<input type="number" class="form-control" [(ngModel)]="user" [ngModelOptions]="{standalone: true}" id="user" required>
+						<input type="number" class="form-control" [(ngModel)]="user" [ngModelOptions]="{standalone: true}" name="user" required>
 					</div>
 					<div class="mb-3 me-1 col-3">
 						<label class="form-label">Date</label>
-						<input type="date" class="form-control" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" id="date" required>
+						<input type="date" class="form-control" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" name="date" required>
 					</div>
         </div>  
-		    <button type="submit" class="btn btn-primary me-2" (click)="submit()">Submit</button>
-        <button type="submit" class="btn btn-danger" (click)="resetForm()">Reset</button>
+		    <button [disabled]="!Form.valid" type="submit" class="btn btn-primary me-2">Submit</button>
+        	<button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
 			</form>
 		</div>
 	</div>
@@ -100,7 +100,7 @@
 			<div class="row">
 				<div class="col-3">
 					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search" placeholder="Search Id" aria-label="Search" [(ngModel)]="searchStudentId" [ngModelOptions]="{standalone: true}">
+						<input class="form-control me-2" type="search" placeholder="Search name" aria-label="Search" [(ngModel)]="searchStudentId" [ngModelOptions]="{standalone: true}">
 						<button class="btn btn-outline-success" type="submit" (click)="getStudentById()">Search</button>
 					</form>
 				</div>
